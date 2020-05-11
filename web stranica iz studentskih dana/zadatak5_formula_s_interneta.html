@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="hr" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>
+	Snježana Mijošević - 5. zadatak
+	</title>
+	<meta http-equiv="content type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="vanjski_stil.css" media="all"/>
+	<script type="text/javascript" src="dan_datum_sat.js"></script>
+	<script type="text/javascript">
+			function Gauss(n)
+			{
+				if (n<33)
+				{
+					alert("Nema smisla tražiti datum Uskrsa prije nego što je Isus uskrsnuo!");
+				}
+				else if ((n>=33 && n<1582)||(n>2099))
+				{
+					alert("Po Gaussovoj formuli imam izračun datum Uskrsa samo od 1582. do 2099. godine.\nMolim vas, unesite godinu iz tog raspona.\nHvala!");
+				}
+				else
+				{
+					var A=n%19;
+					var B=n%4;
+					var C=n%7;
+					var X;
+					var Y;
+					if (1582<=n && n<=1699)
+					{
+						X=22;
+						Y=2;
+					}
+					else if (1699<n && n<=1799)
+					{
+						X=23;
+						Y=3;
+					}
+					else if (1799<n && n<=1899)
+					{
+						X=23;
+						Y=4;
+					}
+					else if (1899<n && n<=2099)
+					{
+						X=24;
+						Y=5;
+					}
+					var D=(19*A+X)%30;
+					var E= (2*B+4*C+6*D+Y)%7;
+					if (22+D+E<=31)
+					{
+						var Cvjetnica=22+D+E-7;
+						var Uzasasce=((22+D+E)+39)-31;
+						var Duhovi=Uzasasce+10;
+						var Trojstvo=Duhovi+7;
+						var Tijelovo=Trojstvo+4;
+						alert("Datum Uskrsa je: "+(22+D+E)+". ožujka "+n+".\nDatum Cvjetnice je: "+Cvjetnica+". ožujka "+n+".");
+						if (Uzasasce>30)
+						{
+							Uzasasce%=30;
+							alert("Datum Uzašašća je: "+Uzasasce+". svibnja "+n+".");
+						}
+						else
+						{
+							alert("Datum Uzašašća je: "+Uzasasce+". travnja "+n+".");
+						}
+						if (Duhovi>30)
+						{
+							Duhovi%=30;
+							alert("Datum Duhova je: "+Duhovi+". svibnja "+n+".");
+						}
+						else
+						{
+							alert("Datum Duhova je: "+Duhovi+". travnja "+n+".");
+						}
+						if (Trojstvo>61)
+						{
+							Trojstvo%=61;
+							alert("Datum Presv. Trojstva je: "+Trojstvo+". lipnja "+n+".");
+						}
+						else if (Trojstvo==60 || Trojstvo==61)
+						{
+							Trojstvo-=30;
+							alert("Datum Presv. Trojstva je: "+Trojstvo+". svibnja "+n+".");
+						}
+						else if (Trojstvo>30 && Trojstvo<61)
+						{
+							Trojstvo%=30;
+							alert("Datum Presv. Trojstva je: "+Trojstvo+". svibnja "+n+".");
+						}
+						else
+						{
+							alert("Datum Presv. Trojstva je: "+Trojstvo+". travnja "+n+".");
+						}
+						if (Tijelovo>61)
+						{
+							Tijelovo%=61;
+							alert("Datum Tijelova je: "+Tijelovo+". lipnja "+n+".");
+						}
+						else if (Tijelovo==60 || Tijelovo==61)
+						{
+							Tijelovo-=30;
+							alert("Datum Tijelova je: "+Tijelovo+". svibnja "+n+".");
+						}
+						else if (Tijelovo>30 && Tijelovo<60)
+						{
+							Tijelovo%=30;
+							alert("Datum Tijelova je: "+Tijelovo+". svibnja "+n+".");
+						}
+						else
+						{
+							alert("Tijelova je: "+Tijelovo+". travnja "+n+".");
+						}
+					}
+					else
+					{
+						var Cvjetnicat=D+E-9-7;
+						var Uzasascet=(D+E-9+39)-30;
+						var Duhovit=Uzasascet+10;
+						var Trojstvot=Duhovit+7;
+						var Tijelovot=Trojstvot+4;
+						if (Cvjetnicat>0)
+						{
+							alert("Datum Uskrsa je: "+(D+E-9)+". travnja "+n+".\nDatum Cvjetnice je: "+Cvjetnicat+". travnja "+n+".");
+						}
+						else
+						{
+							Cvjetnicat+=31; //prelazimo u ožujak
+							alert("Datum Uskrsa je: "+(D+E-9)+". travnja "+n+".\nDatum Cvjetnice je: "+Cvjetnicat+". ožujka "+n+".");
+						}
+						if (Uzasascet>31)
+						{
+							Uzasascet%=31;
+							alert("Datum Uzašašća je: "+Uzasascet+". lipnja "+n+".");
+						}
+						else
+						{
+							alert("Datum Uzašašća je: "+Uzasascet+". svibnja "+n+".");
+						}
+						if (Duhovit>31)
+						{
+							Duhovit%=31;
+							alert("Datum Duhova je: "+Duhovit+". lipnja "+n+".");
+						}
+						else
+						{
+							alert("Datum Duhova je: "+Duhovit+". svibnja "+n+".");
+						}
+						if (Trojstvot>61)
+						{
+							Trojstvot%=61;
+							alert("Datum Presv. Trojstva je: "+Trojstvot+". srpnja "+n+".");
+						}
+						else if (Trojstvot>31 && Trojstvot<=61)
+						{
+							Trojstvot%=31;
+							alert("Datum Presv. Trojstva je: "+Trojstvot+". lipnja "+n+".");
+						}
+						else
+						{
+							alert("Datum Presv. Trojstva je: "+Trojstvot+". svibnja "+n+".");
+						}
+						if (Tijelovot>61)
+						{
+							Tijelovot%=61;
+							alert("Datum Tijelova je: "+Tijelovot+". srpnja "+n+".");
+						}
+						else if (Tijelovot>31 && Tijelovot<=61)
+						{
+							Tijelovot%=31;
+							alert("Datum Tijelova je: "+Tijelovot+". lipnja "+n+".");
+						}
+						else
+						{
+							alert("Datum Tijelova je: "+Tijelovot+". svibnja "+n+".");
+						}
+					}
+				}
+			}
+						function provjeriGodinu()
+                        {
+                            var godina=document.forma_podaci.godina.value;
+                            var regIzraz =/^\d{1,10}\.?$/; 
+                            if(regIzraz.test(godina))
+                            {
+                                var string2 = '<span style="color:green">U REDU!</span>'
+                                document.getElementById("prov_2").innerHTML=string2;
+                                document.forma_podaci.prikaz.disabled=false;
+                            }
+                            else
+                            {
+                                 var string2 = '<span style="color:red">POGREŠNO!</span>'
+                                document.getElementById("prov_2").innerHTML=string2;
+                                document.forma_podaci.prikaz.disabled=true;
+                            }
+                        }
+			
+    </script>
+</head>
+<body onload="startTime()">
+<div class="container">
+	<div class="zaglavlje">
+<script src="jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+function jsddm_open()
+{	jsddm_canceltimer();
+	jsddm_close();
+	ddmenuitem = $(this).find('ul').eq(0).css('visibility', 'visible');}
+
+function jsddm_close()
+{	if(ddmenuitem) ddmenuitem.css('visibility', 'hidden');}
+
+function jsddm_timer()
+{	closetimer = window.setTimeout(jsddm_close, timeout);}
+
+function jsddm_canceltimer()
+{	if(closetimer)
+	{	window.clearTimeout(closetimer);
+		closetimer = null;}}
+
+$(document).ready(function()
+{	$('#jsddm > li').bind('mouseover', jsddm_open);
+	$('#jsddm > li').bind('mouseout',  jsddm_timer);});
+
+document.onclick = jsddm_close;
+</script>
+		<br/><b>
+		Sveučilište Josipa Jurja Strossmayera u Osijeku
+		<br/>
+		<a href="http://www.mathos.hr"><img src="slike/logo_odjela.gif" alt="Logo Odjela za matematiku" height="88px" align="right" border="0" /></a>
+		Odjel za matematiku
+		<br/>
+		Trg Ljudevita Gaja 6
+		<br/>
+		31000 Osijek
+		<br/>
+		broj telefona: 031/224 800
+		<br/>
+		fax: 031/224 801
+		<br/>
+		<ins id="txt">Danas je (<i>pričekaj dok JavaScript učita</i>):</ins></b><br/><br/>
+		<ul id="jsddm">
+			<li><a class="efekt2" href="index.html">Naslovna stranica</a></li>
+			<li><a class="efekt2" href="zivotopis.html">Životopis</a>
+			<ul><li><a href="zivotopis.html#osobnipodaci">Osobni podaci</a></li>
+				<li><a href="zivotopis.html#obrazovanje">Obrazovanje</a></li>
+				<li><a href="zivotopis.html#sviranjeinstrumenata">Sviranje instrumenata</a></li>
+			</ul>
+			</li>
+			<li><a class="efekt2" href="seminarski_radovi.html">Seminarski radovi</a>
+			<ul><li><a href="seminari/Prijenosnaracunala.ppt">Prijenosna (notebook) računala u uredskom poslovanju</a></li>
+				<li><a href="seminari/P2Paplikacije.ppt">P2P aplikacije, socket programiranje s TCP i UDP, i primjerima u Pythonu</a></li>
+				<li><a href="seminari/Pojamosebiuranomdjetinjstvu.ppt">Pojam o sebi u ranom djetinjstvu</a></li>
+				<li><a href="seminari/Diferencijalnapedagogija.ppt">Diferencijalna pedagogija</a></li>
+			</ul>
+			</li>
+			<li><a class="efekt2" href="podrucje_interesa.html">Područje interesa</a>
+			<ul><li><a href="podrucje_interesa.html#matematika">Matematika</a></li>
+				<li><a href="podrucje_interesa.html#ostalo">Ostalo</a></li>
+				<li><a href="podrucje_interesa.html#slobodno_vrijeme">Slobodno vrijeme</a></li>
+			</ul>
+			</li>
+			<li><a class="efekt2" href="teologija_tijela.html">Teologija tijela</a></li>
+			<li><a class="efekt2" href="linkovi.html">Linkovi</a>
+			<ul><li><a href="http://www.mathos.hr/">Odjel za matematiku</a></li>
+				<li><a href="http://www.totustuus.hr">Totus Tuus</a></li>
+				<li><a href="http://www.medjugorje.hr">Međugorje</a></li>
+				<li><a href="http://www.cirilimetod.hr">Župa sv. Ćirila i Metoda, Osijek</a></li>
+				<li><a href="http://www.duhos.com">Duhos</a></li>
+				<li><a href="http://www.chordbook.com/guitarchords.php">Nauči jednostavne i složenije akorde za gitaru</a></li>
+				<li><a href="http://www.get-tuned.com/online_12_string_guitar_tuner.php">Namjesti žice na 12-žičnoj gitari (<i>naštimaj</i> po zvuku)</a></li>
+			</ul>
+			</li>
+			<li><a class="efekt2" href="zadace.html">Domaće zadaće</a>
+			<ul><li><a class="efekt2" href="2_zadatak.html">Regularni izrazi</a></li>
+				<li><a class="efekt2" href="moj_jquery.html">Moj jQuery</a></li>
+				<li><a class="efekt2" href="zadatak5_formula_s_interneta.html">Datum Uskrsa</a></li>
+			</ul>
+			</li>
+		</ul>	
+	</div>
+	
+	<div class="linkovi">
+		<br/>
+		<a class="efekt" href="index.html">Naslovna stranica</a>
+		<br/>
+		<a class="efekt" href="zivotopis.html">Životopis</a>
+		<br/>
+		<a class="efekt" href="seminarski_radovi.html">Seminarski radovi</a>
+		<br/>
+		<a class="efekt" href="podrucje_interesa.html">Područje interesa</a>
+		<br/>
+		<a class="efekt" href="teologija_tijela.html">Teologija tijela</a>
+		<br/>
+		<a class="efekt" href="linkovi.html">Linkovi</a>
+		<br/>
+		<a class="efekt" href="zadace.html">Domaće zadaće</a>
+		<br/>
+		
+       
+	</div>
+	<div class="sadrzaj">
+	
+	<form name="forma_podaci">
+			Unesi godinu:     <input type="text" size="30" name="godina" onkeyup="provjeriGodinu()"/><span id="prov_2"></span><br/><br/>			
+			<input type="button" name ="prikaz" value="Izračunaj datum Uskrsa" disabled="true" onclick="Gauss(document.forma_podaci.godina.value)"/>
+			</form>
+	
+	</div>
+	<div class="podnozje">
+		<b>Copyright &copy; 2012 <i>Snježana Mijošević.</i> Sva prava pridržana.<br/>
+		<script type="text/javascript" src="datum_zadnje_promjene.js"></script></b>
+	</div>
+	</div>
+</body>
+</html>

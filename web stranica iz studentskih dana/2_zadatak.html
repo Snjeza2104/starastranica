@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html lang="hr" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title> Obrazac za unos </title>
+		<style type="text/css">
+			body {background-color:orange;
+			font: 11pt Book antiqua, Times New Roman;}
+}
+		</style>
+		<script type="text/javascript">
+			function prikaziFormu(forma)
+			{
+				//otvaranje prozora
+				noviProzor=window.open('','','width=300,height=200');
+				//ispis imena, prezimena i telefona
+				ime_ulaz="<b>Vaše ime: " + forma.ime_korisnika.value + "</b><br>";
+				noviProzor.document.write(ime_ulaz);
+				tel_ulaz="<b>Vaš telefon: " + forma.tel_korisnika.value + "</b><br>";
+				noviProzor.document.write(tel_ulaz);
+				var email_ulaz="<b>Vaša e-mail adresa: "+forma.email.value+"</b><br/><br/>";
+				noviProzor.document.write(email_ulaz);
+				var adresa_ulaz="<i>Vaša adresa:</i> "+forma.adresa.value+"<br/><br/>";
+				noviProzor.document.write(adresa_ulaz);
+				var mjesto_stanovanja_ulaz="<i>Mjesto stanovanja:</i> "+forma.mjesto_stanovanja.value+"<br/><br/>";
+				noviProzor.document.write(mjesto_stanovanja_ulaz);
+				var postanski_broj_ulaz="<i>Poštanski broj:</i> "+forma.postanski_broj.value+"<br/><br/>";
+				noviProzor.document.write(postanski_broj_ulaz);
+				//studij
+				if (forma.nast_studij.checked&&!forma.diplo_studij.checked)
+				{
+					noviProzor.document.write("<br/><br/>Nemojte biti strogi prema učenicima!");
+				}
+				else if(forma.diplo_studij.checked&&!forma.nast_studij.checked)
+				{
+					noviProzor.document.write("<br/><br/>Nemojte varati!");
+				}
+				else if(forma.diplo_studij.checked&&forma.nast_studij.checked)
+				{
+					noviProzor.document.write("<br/><br/>Nemojte varati i nemojte biti strogi!");
+				}
+				else
+				{
+					noviProzor.document.write("<br/><br/>Izaberite nešto!");
+				}
+				//spol
+				for(var j=0; j<forma.spol.length; j++)
+				{
+					if(forma.spol[j].checked)
+					{
+						break;
+					}
+	  
+				}
+				if(forma.spol[j].value=='1')
+				{
+					var lista = forma.godina;
+					noviProzor.document.write("<br/><br/>"+forma.ime_korisnika.value+" je rođen "+forma.dan.value+"."+forma.mjesec.value+"."+forma.godina.value + ".");
+				}
+				else
+				{
+					var lista = forma.godina;
+					noviProzor.document.write("<br/><br/>"+forma.ime_korisnika.value+" je rođena "+forma.dan.value+"."+forma.mjesec.value+"."+forma.godina.value + ".");
+				}
+			}
+			//3. dio zadatka - zatvaranje prozora
+			function zatvori_prozor()
+			{
+				noviProzor.window.close();
+			}
+
+                        
+                        function provjeriEmail()
+                        {
+                            var email=document.forma_podaci.email.value;
+                            var regIzraz = /^(([\-\w]+)\.?)+@(([\-\w]+)\.?)+\.[a-zA-Z]{2,4}$/;
+                            if(regIzraz.test(email))
+                            {
+                                var string = '<span style="color:green">U REDU!</span>'
+                                document.getElementById("prov").innerHTML=string;
+                                document.forma_podaci.prikaz.disabled=false;
+                            }
+                            else
+                            {
+                                 var string = '<span style="color:red">POGREŠNO!</span>'
+                                document.getElementById("prov").innerHTML=string;
+                                document.forma_podaci.prikaz.disabled=true;
+                            }
+                        }
+						function provjeriTelefon()
+                        {
+                            var tel_korisnika=document.forma_podaci.tel_korisnika.value;
+                            var regIzraz2 =/^(\+?\d{2,3})*\s*(\(\d{2,3}\)\s*)*\d{3,4}(-{0,1}|\s{0,1})\d{3,4}$/; 
+							///^(\+\d)*\s*(\(\d{3}\)\s*)*\d{3}(-{0,1}|\s{0,1})\d{2,3}(-{0,1}|\s{0,1})\d{2,3}$/; 
+                            if(regIzraz2.test(tel_korisnika))
+                            {
+                                var string2 = '<span style="color:green">U REDU!</span>'
+                                document.getElementById("prov_2").innerHTML=string2;
+                                document.forma_podaci.prikaz.disabled=false;
+                            }
+                            else
+                            {
+                                 var string2 = '<span style="color:red">POGREŠNO!</span>'
+                                document.getElementById("prov_2").innerHTML=string2;
+                                document.forma_podaci.prikaz.disabled=true;
+                            }
+                        }
+						function imeIprezime()
+						{
+							var ime_i_prezime=document.forma_podaci.ime_korisnika.value;
+							if (ime_i_prezime)
+							{
+								document.forma_podaci.prikaz.disabled=false;
+							}
+							else
+							{
+								document.forma_podaci.prikaz.disabled=true;
+							}
+						}
+						
+                    </script>
+	</head>
+	<body>
+	<h2> Prikaz podataka u posebnom prozoru</h2><p>
+		<form name="forma_podaci">
+			<b>Upišite vaše ime i prezime*:</b><br/><input type="text" size="50" name="ime_korisnika" onmouseout="imeIprezime()"/><br/><br/>
+			<b>Upišite vaš telefon*:</b><br/><input type="text" size="30" name="tel_korisnika" onmousedown="provjeriTelefon()" onmousemove="provjeriTelefon()" onkeyup="provjeriTelefon()" onmouseout="provjeriTelefon()"/><span id="prov_2"></span><br/><br/>
+			<b>E-mail adresa*:</b><br/><input type="text" size="30" name="email" onmousedown="provjeriEmail()" onmousemove="provjeriEmail()" onkeyup="provjeriEmail()" onmouseout="provjeriEmail()"/><span id="prov"></span><br/><br/>
+			<i>Adresa:</i>			    <input type="text" size="30" name="adresa"/><br/><br/>
+			<i>Mjesto stanovanja:</i>	<input type="text" size="30" name="mjesto_stanovanja"/><br/><br/>
+			<i>Poštanski broj:</i>		<input type="text" size="30" name="postanski_broj"/><br/><br/>
+			<u>Studij:</u><br/>
+			<input type="checkbox" name="nast_studij"/> <i>Sveučilišni nastavnički studij matematike i informatike</i><br/><br/>
+			<input type="checkbox" name="diplo_studij"/> <i>Sveučilišni diplomski studij matematike</i><br/><br/>
+			<u>Spol</u>:
+			<input type="radio" name="spol" value='1'/> muško&nbsp;&nbsp;
+			<input type="radio" name="spol" value='0'/> žensko <br/><br/>
+			<u>Datum rođenja:</u>
+			<select name="dan">
+				<script type = "text/javascript">
+				for (i = 1; i < 32; i++) {
+					if (i == 1) {
+						document.write("<option select=\"selected\">" + i + "</option>");
+					}
+					else{
+						document.write("<option>" + i + "</option>");
+					}
+				}
+				</script>
+			</select>.
+			<select name="mjesec">
+				<script type = "text/javascript">
+				for (i = 1; i < 12; i++) {
+					if (i == 1) {
+						document.write("<option select=\"selected\">" + i + "</option>");
+					}
+					else{
+						document.write("<option>" + i + "</option>");
+					}
+				}
+				</script>
+							</select>.
+			<select name="godina">
+				<script type = "text/javascript">
+				for(var j=1920; j<=1998; j++)
+		{
+			if(j==1985)
+			{
+				document.write('<option selected="selected">'+j+'</option>');
+			}
+			else
+			{
+				document.write("<option>"+j+"</option>");
+			}
+			
+		}
+				</script>
+							</select>.
+<br/><br/>
+<input type="button" name ="prikaz" value="Prikaži podatke" disabled="true" onclick="prikaziFormu(document.forma_podaci)"/>
+		</form>
+		</p>
+            <br/><br/>
+        <font size="+1">
+   <a href="javascript:void(0)" onClick="zatvori_prozor()">
+    Zatvori prozor!!!</a>
+    </font>
+	</body>
+</html>
+	

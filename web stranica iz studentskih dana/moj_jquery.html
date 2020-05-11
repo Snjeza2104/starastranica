@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="hr" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>
+	Snježana Mijošević - Moj jQuery
+	</title>
+	<meta http-equiv="content type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="jQuery_stil.css" media="all"/>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			$("ul").hide();
+			$("p").hide();
+			$("button#prikazi").click(function()
+			{
+				$("ul#popis_koraka").show(1000);
+			});
+			$("button#sakrij").click(function()
+			{
+				$("ul#popis_koraka").hide(1000);
+			});
+			$("li#prvi.flip").click(function()
+			{
+				$("p#prvip.panel").toggle("slow");
+			});
+			$("li#drugi.flip").click(function()
+			{
+				$("p#drugip.panel").toggle("slow");
+			});
+			$("li#treci.flip").click(function()
+			{
+				$("p#trecip.panel").toggle("slow");
+			});
+			$("li#cetvrti.flip").click(function()
+			{
+				$("p#cetvrtip.panel").toggle("slow");
+			});
+			$("li#peti.flip").click(function()
+			{
+				$("p#petip.panel").toggle("slow");
+			});
+			$("li#sesti.flip").click(function()
+			{
+				$("p#sestip.panel").toggle("slow");
+			});
+			$("li#sedmi.flip").click(function()
+			{
+				$("p#sedmip.panel").toggle("slow");
+			});
+			$("li#osmi.flip").click(function()
+			{
+				$("p#osmip.panel").toggle("slow");
+			});
+			$("li#deveti.flip").click(function()
+			{
+				$("p#devetip.panel").toggle("slow");
+			});
+			$("div#zanimljivost").click(function()
+			{
+				$(this).fadeTo("slow",0.31);
+			});
+			$("div#zaglavlje_jqueryja").click(function()
+			{
+				$("div#kratak_opis").css({"align":"center", "color":"blue"});
+				$("div#kratak_opis").addClass('sredina');
+				$("ul#popis_koraka").addClass('sredina');//Ovo sam dodala radi ljepšeg izgleda
+				$("li.flip").css({"width":"400px"});//Ovo sam dodala radi ljepšeg izgleda
+				$("p.panel").css({"width":"400px"});//Ovo sam dodala radi ljepšeg izgleda
+			});
+		});
+</script>
+</head>
+<body>
+	<div id="zaglavlje_jqueryja">
+		Kut između kazaljki sata (satne i minutne)
+	</div>
+	<br/><br/>
+	<div id="kratak_opis">
+		Problem: Koliki kut zatvaraju kazaljke sata u <i>x</i> sati i <i>y</i> minuta (<i>x</i> i <i>y</i> su zadani)?
+	</div>
+	<button id="prikazi" type="button">Prikaži</button> <button id ="sakrij" type="button">Sakrij</button>
+	<ul id="popis_koraka">
+		<li class="flip" id="prvi">Pomnoži broj sati sa 30 stupnjeva.
+			<p class="panel" id="prvip">Npr. Tražimo kut između kazaljki sata u 12:15h. <i>x</i>=12, <i>y</i>=15.
+			<i>x</i>*30=12*30=360 stupnjeva.
+			<br/><br/>360/12=30 => Satna kazaljka prijeđe u svakom satu 30 stupnjeva.
+			</p>
+		</li>
+		<li class="flip" id="drugi">Pomnoži broj minuta s 0.5 stupnja.
+			<p class="panel" id="drugip"><i>y</i>*0.5=15*0.5=7.5 stupnjeva.
+			<br/><br/>30/60=0.5 => Satna kazaljka prijeđe svake minute 0.5 stupnja.
+			</p>
+		</li>
+		<li class="flip" id="treci">Zbroji prethodna dva razultata.
+			<p class="panel" id="trecip">30*<i>x</i>+0.5*<i>y</i>=360+7.5=367.5 stupnjeva.
+			<br/><br/>Dobili smo kao rezultat kut koji je prešla satna kazaljka za <i>x</i> sati i <i>y</i> minuta.
+			</p>
+		</li>
+		<li class="flip" id="cetvrti">Pomnoži broj minuta sa 6 stupnjeva.
+			<p class="panel" id ="cetvrtip">6*<i>y</i>=6*15=90 stupnjeva.
+			<br/><br/>360/60=6 => Minutna kazaljka prijeđe svake minute 6 stupnja.
+			</p>
+		</li>
+		<li class="flip" id="peti">Oduzmi prethodna dva rezultata.
+			<p class="panel" id="petip">30*<i>x</i>+0.5*<i>y</i>-6*<i>y</i>=360+7.5-6*15=367.5-90=277.5 stupnjeva.
+			<br/><br/>Dobivamo kut između satne i minutne kazaljke.
+			</p>
+		</li>
+		<li class="flip" id="sesti">Uzmi apsolutnu vrijednost dobivenog rezultata.
+			<p class="panel" id="sestip">|277.5|=277.5 stupnjeva.
+			<br/><br/>Ovisno o tome je li veći kut prešla satna ili minutna kazaljka, rezultat će biti pozitivan ili negativan,
+			pa je bitno uzeti apsolutnu vrijednost.</p>
+		</li>
+		<li class="flip" id="sedmi">Ako je kut veći od 360 stupnjeva, oduzmi od njega 360 stupnjeva.
+			<p class="panel" id="sedmip">277.5 &lt; 360
+			<br/><br/>Ovaj korak služi kao slučaj da ne želimo npr. 17h pretvarati u 5h, pa dobijemo veći kut za satnu kazaljku.</p>
+		</li>
+		<li class="flip" id="osmi">Ako je tako dobiven kut manji od 180 stupnjeva, on je rješenje, a izbočeni kut je jednak 360 stupnjeva - izračunati kut.
+			<p class="panel" id="osmip">277.5 &gt; 180
+			<br/><br/>Budući da svaka dva polupravca zatvaraju dva kuta, možemo kao rješenje dobiti veći ili manji kut.
+			Ovisno o situaciji, gledamo slučajeve.</p>
+		</li>
+		<li class="flip" id="deveti">U suprotnom smo izračunali izbočeni kut (ili ispruženi, ako je kut jednak 180 stupnjeva). Manji kut koji zatvaraju je jednak 360 stupnjeva minus izbočeni kut.
+			<p class="panel" id="devetip">Izbočeni kut=277.5 stupnjeva. Manji kut je jednak 360-277.5=82.5 stupnjeva.</p>
+		</li>
+	</ul>
+	<div id="zanimljivost">
+		Ovaj je zadatak postavljen na regionalnom natjecanju mladih matematičara (2001. godine u Požegi) za 5. razred osnovne škole.
+		Tada ga nisam znala riješiti točno. To me kopkalo pa sam u 6. razredu sama došla do formule (to mi je tada djelovalo kao otkriće
+		na koje sam bila jako ponosna). Kasnije me malo "pokopalo" što sam u jednoj Matki vidjela da je netko već došao do te formule prije
+		mene. Kako god bilo, učinilo mi se zanimljivim staviti to kao temu jQuery-ja (ovdje sam samo to razradila kao algoritam kroz korake).
+	</div>
+</body>
+</html>

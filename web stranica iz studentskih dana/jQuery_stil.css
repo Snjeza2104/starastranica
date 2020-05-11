@@ -1,0 +1,72 @@
+﻿body
+{
+	background-color:orange;
+	background-image:url('slike/kutizmedjukazaljkisata.png');
+	background-repeat:no-repeat;
+	background-position:center;
+}
+div#zaglavlje_jqueryja
+{
+	margin:auto;
+	font:20pt Book antiqua;
+	background-color:firebrick;//darkred;
+	border:3px solid white;
+	color:white;
+	width:50%;
+	border-radius:20px;
+	padding:5px;
+	text-align:center;
+}
+div#zanimljivost
+{
+	top:100px;
+	left:50px;
+	margin:auto;
+	width:60%;
+	border:1px dotted gray;
+	border-radius:5px;
+	background-color:#008866;
+	color:white;
+	padding:4px;
+	font:12pt Times New Roman;
+}
+div#kratak_opis
+{
+	background-color:yellow;
+	position:top-left;
+	border:2px inset green;
+	width:250px;
+	height:auto;
+}
+.sredina
+{
+	margin:auto;
+	width:50%;
+	font:12pt Book antiqua;
+	text-align:center; 
+	color:blue;
+	padding:4px;
+	border-radius:7px;
+}
+.panel,.flip
+{
+	left:100px;
+	width:250px;
+	margin:0px;
+	text-align:center;
+	border:solid 1px #c3c3c3;
+}
+.flip
+{
+	padding:5px;
+	background:#e5eecc;
+	border-radius:10px;
+}
+.panel
+{
+	background:HoneyDew;
+}
+ul#popis_koraka
+{
+	list-style-type:none;
+}
